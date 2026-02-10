@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Day</title>
+    <style>
+        body {
+            background-color: #fff0f5;
+            font-family: 'Perpetua', cursive;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        h1 {
+            color: hsl(0, 96%, 81%);
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .buttons {
+            margin: 20px 0;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1.2em;
+            position: relative;
+        }
+
+        #yesBtn {
+            background-color: #ff97bb;
+            color: white;
+            z-index: 1;
+        }
+
+        #noBtn {
+            background-color: #ff6b6b;
+            color: white;
+            z-index: 0.5;
+        }
+
+        .gif img {
+            width: 250px;   /* kecil */
+            height: auto;
+        }
+
+
+        .footer {
+            position: fixed;
+            bottom: 20px;
+            color: #ff6b6b;
+            font-size: 1.2em;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            width: 300px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            font-size: 0.95em;
+            color: #555;
+            line-height: 1.6;
+            margin: 0 auto;
+        }
+
+        .hearts {
+            font-size: 1.8em;
+            margin: 10px 0 20px;
+        }
+
+        .title {
+            color: #ff6b6b;
+            font-size: 2em;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>I wrote a letter fr u</h1>
+        <div class="gif">
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExY3R2anRsZ3BiNWl3NWZxempkYnljeWpwaXViOGxhcWxqMXBpMHVsNyZlcD12MV9zdGlja2Vyc19zZWFyY2gmY3Q9cw/cJHAJn3dPZlpTFjDV0/giphy.gif" alt="Cute gif">
+        </div>
+        <div class="buttons">
+            <button id="yesBtn">Yes!</button>
+            <button id="noBtn">to lazy to read</button>
+        </div>
+    </div>
+    <div class="footer">yg <span id="from">bikin</span> keren <span id="to">bgt si</span> 😎</div>
+
+    <script>
+        // Get URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const fromParam = urlParams.get('from');
+        const toParam = urlParams.get('to');
+
+        // Update the text if parameters exist
+        if (fromParam) document.getElementById('from').textContent = fromParam;
+        if (toParam) document.getElementById('to').textContent = toParam;
+
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const container = document.querySelector('.container');
+        let yesBtnSize = 1;
+        let noBtnSize = 1;
+
+        noBtn.addEventListener('click', () => {
+            yesBtnSize *= 1.25;
+            yesBtn.style.transform = `scale(${yesBtnSize})`;
+            noBtnSize -= 0.1;
+            noBtn.style.transform = `scale(${noBtnSize})`;
+        });
+
+
+yesBtn.addEventListener('click', () => {
+    container.innerHTML = `
+        <h1 class="title">Here a letter fr u!!</h1>
+        <div class="hearts">❤️ ❤️ ❤️</div>
+
+        <div class="card">
+            <p>
+                Happy Valentine's Day. I'm so glad I got to meet u,
+                and thank u for choosing me and giving me a chance to get to know u.
+                I want u to know that you very special to me,
+                and that make me so much happier.
+            </p>
+
+            <p>
+                Thank u for being understanding of me, and I hope this isn't
+                too much for you cause I know u struggle with me sometimes.
+            </p>
+
+            <p>
+                But most of all, u deserve the very best, today and every day.<br>
+                <br>
+                Happy Valentine's Day Pookie!!! 💗
+            </p>
+        </div>
+    `;
+});
+
+
+
+        noBtn.addEventListener('click', () => {
+            container.innerHTML = `
+                <h1>why u choose this, ok fine >:(</h1>
+                <div class="gif">
+                    <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExaXk2YzhuMHMzYzVwYXNsZ2FjaHdmZDExandtYTIyZzAwMHJtdnQwdyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/NBs1mJNW8qCPrsauIN/giphy.gif" alt="Love gif">
+                </div>
+                <button onclick="location.href='letter.html'" id="noBtn">choose again</button>
+            `;
+            
+        });
+    </script>
+</body>
+</html>

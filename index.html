@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Day</title>
+    <style>
+        body {
+            background-color: #fff0f5;
+            font-family: 'Perpetua', cursive;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        h1 {
+            color: hsl(0, 96%, 81%);
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .buttons {
+            margin: 20px 0;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 1.2em;
+            position: relative;
+        }
+
+        #yesBtn {
+            background-color: hsl(358, 100%, 80%);
+            color: white;
+            z-index: 1;
+        }
+
+        #noBtn {
+            background-color: #ff6b6b;
+            color: white;
+            z-index: 0.5;
+        }
+
+        .gif img {
+            width: 250px;   /* kecil */
+            height: auto;
+        }
+
+
+        .footer {
+    position: fixed;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #ff6b6b;
+    font-size: 1.1em;
+    z-index: 999;
+}
+
+
+        .memories-title {
+    color: #ff5a5a;
+    font-size: 2.5em;
+    margin-bottom: 30px;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+    max-width: 900px;
+    margin: auto;
+}
+
+.photo {
+    background: white;
+    padding: 12px 12px 25px;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    transition: transform 0.3s;
+}
+
+.photo img {
+    width: 100%;
+    border-radius: 6px;
+}
+
+/* efek polaroid miring */
+.rotate-left {
+    transform: rotate(-4deg);
+}
+
+.rotate-none {
+    transform: rotate(1deg);
+}
+
+.rotate-right {
+    transform: rotate(4deg);
+}
+
+/* hover lucu */
+.photo:hover {
+    transform: scale(1.05) rotate(0deg);
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Happy Valentine's Day :3</h1>
+        <div class="gif">
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMWFueHo2cXdjN2tlYmZhemdrNWowcTA3Z2Vua3VycTlwYzNvbXZibSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/kKeJ4JuNkaEZbkPOOL/giphy.gif" alt="Cute gif">
+        </div>
+        <div class="buttons">
+            <button id="yesBtn">Next</button>
+            <button id="noBtn">No >:(</button>
+        </div>
+    </div>
+    <!-- <div class="footer">yg <span id="from">bikin</span> keren <span id="to">bgt si</span> 😎</div> -->
+
+    <script>
+        // Get URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const fromParam = urlParams.get('from');
+        const toParam = urlParams.get('to');
+
+        // Update the text if parameters exist
+        if (fromParam) document.getElementById('from').textContent = fromParam;
+        if (toParam) document.getElementById('to').textContent = toParam;
+
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const container = document.querySelector('.container');
+        let yesBtnSize = 1;
+        let noBtnSize = 1;
+
+        noBtn.addEventListener('click', () => {
+            yesBtnSize *= 1.25;
+            yesBtn.style.transform = `scale(${yesBtnSize})`;
+            noBtnSize -= 0.1;
+            noBtn.style.transform = `scale(${noBtnSize})`;
+        });
+
+        noBtn.remove();
+
+
+        yesBtn.addEventListener('click', () => {
+            container.innerHTML = `
+                <h1>some pict🥇</h1>
+
+                <div class="gallery">
+                    <div class="photo rotate-left">
+                        <img src="img1.png">
+                    </div>
+                    <div class="photo rotate-none">
+                        <img src="img2.png">
+                    </div>
+                    <div class="photo rotate-right">
+                        <img src="img3.png">
+                    </div>
+                </div>
+                <br>
+                <h1>  </h1>
+                <div class="gif">
+                    <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMWFueHo2cXdjN2tlYmZhemdrNWowcTA3Z2Vua3VycTlwYzNvbXZibSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/d37mEpcaGP3pudPoho/giphy.gif" alt="Love gif">
+                </div>
+                <br>
+                <button id="noBtn" onclick="location.href='letter.html'">Next</button>
+                
+            `;
+        });
+    </script>
+</body>
+</html>
